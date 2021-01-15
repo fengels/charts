@@ -142,8 +142,8 @@ graylog:
   ## A service for Graylog web interface
   ##
   service:
-    type: ClusterIP
-    port: 9000
+    type: LoadBalancer
+    port: 80
     ## Add additional ports for the service/statefulset to expose
     ##
     ports: []
@@ -196,12 +196,12 @@ graylog:
 
   ## External URL to access Graylog at
   ##
-  externalUri: ""
+  externalUri: "127.0.0.1"
 
   ingress:
     ## If true, Graylog server Ingress will be created
     ##
-    enabled: false
+    enabled: true
     ## Graylog server Ingress annotations
     ##
     annotations: {}
@@ -215,8 +215,8 @@ graylog:
     ## Must be provided if Ingress is enabled
     ## Note: Graylog does not support two URL. You can specify only single URL
     ##
-    hosts: []
-    #   - graylog.yourdomain.com
+    hosts:
+      - localhost
 
     ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
     extraPaths: []
