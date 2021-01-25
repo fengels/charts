@@ -22,7 +22,7 @@ serviceAccount:
 
 tags:
   # If true, this chart will install Elasticsearch from requirement dependencies
-  install-elasticsearch: true
+  install-elasticsearch: false
   # If true, this chart will install MongoDB replicaset from requirement dependencies
   install-mongodb: true
 
@@ -142,7 +142,7 @@ graylog:
   ## A service for Graylog web interface
   ##
   service:
-    type: LoadBalancer
+    type: ClusterIP
     port: 80
     ## Add additional ports for the service/statefulset to expose
     ##
@@ -297,7 +297,7 @@ graylog:
     ## requires authentication.
     ##
     # hosts: http://elasticsearch-client.graylog.svc.cluster.local:9200
-    hosts: "http://my-graylog-elasticsearch-client.default.svc.cluster.local:9200"
+    hosts: "http://elasticsearch-master.kki-monitoring.svc.cluster.local:9200"
     # Allow elasticsearch hosts to be fetched from a k8s secret
     # {{ graylog.fullname }}-es will be used as uriSecretName if left empty
     uriSecretName: ""
